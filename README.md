@@ -1,2 +1,2 @@
-# Ye-il-Sekt-r-Site
+# Yesil-Sektor-Site
 Yeşil Sektör Site
