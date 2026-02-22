@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Misyonumuz</title>
+    <style>
+        /* MİSYON ÖZEL ŞEFFAF KUTU TASARIMI */
+        .misyon-main {
+            padding: 80px 0; /* Footer ile arayı açar, sayfayı ferahlatır */
+            display: flex;
+            justify-content: center;
+        }
+
+        .misyon-container {
+            max-width: 900px;
+            width: 90%;
+            margin: 0 auto;
+            margin-top: 80px;
+            color: white;
+            font-family: Arial, sans-serif;
+            line-height: 1.8;
+            
+            
+            
+            /* İSTEDİĞİN PREMİUM BOX */
+            background: rgba(0, 0, 0, 0.7); /* Şeffaf Siyah */
+            padding: 50px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px); /* Arkadaki rengi yumuşatır */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Çok ince çerçeve */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .misyon-container h1 {
+            font-size: 42px;
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            padding-top: 0; /* Eski stilden kurtardık */
+        }
+
+        .misyon-container h2 {
+            margin-top: 40px;
+            color: #4CAF50; /* Hafif bir marka rengi dokunuşu premium durur */
+        }
+
+        /* SENİN FOOTER KODLARIN (DOKUNULMADI) */
+        .footer {
+            margin-top: auto;
+        }
+
+        .footer-container {
+            margin: 0 auto; 
+            width: 90%;
+            background: #1b1b1b;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            padding: 60px;
+            color: white;
+            box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .col b {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .col a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 15px;
+            transition: 0.2s;
+            font-weight: 600;
+        }
+
+        .col a:hover {
+            color: #003724;
+        }
+    </style>
+</head>
+<body class="misyonumuz">
+
+<header class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img width="100px" src="Yeşil Sektör Logo (1).png" alt="Logo">
+            </a>
+        </div>
+        <nav class="menu">
+            <a href="index.html" class="nav-anasayfa">Ana Sayfa</a>
+            <a href="iletisim.html" class="nav-iletisim">İletişim</a>
+            <a href="ekibimiz.html" class="nav-ekibimiz">Ekibimiz</a>
+            <a href="misyonumuz.html" class="nav-misyonumuz">Misyonumuz</a>
+            <a href="kvkk.html" class="nav-kvkk">KVKK Metni</a>
+        </nav>
+    </div>
+</header>
+<main class="misyon-main">
+    <div class="misyon-container">
+        <h1>Misyonumuz</h1>
+        
+        <p>
+            Türkiye’de motor sporlarının geleceğine yön vermek ve bu alanın potansiyelini
+            en üst seviyeye taşımak amacıyla yola çıktık. Yeşil Sektör, motor sporlarını
+            bir kültür haline getirmek ve genç yeteneklere ilham olmak için çalışan
+            bir oluşumdur.
+        </p>
+
+        <h2>Türkiye'de Motor Sporlarının Gelişimi</h2>
+        <p>
+            Genç sporcuların hayallerini gerçeğe dönüştürmeleri için gerekli desteği
+            sağlıyor, eğitim ve organizasyonlarla onların gelişimine katkıda bulunuyoruz.
+        </p>
+
+        <h2>Birlikte Daha Güçlüyüz</h2>
+        <p>
+            Sporcular, markalar ve organizatörler arasında güçlü bağlar kurarak
+            sürdürülebilir bir spor ekosistemi oluşturmayı hedefliyoruz.
+        </p>
+
+        <h2>Haber ve Bilgi Merkezi</h2>
+        <p>
+            Güncel haberler, analizler ve içeriklerle motor sporları tutkunlarına
+            güvenilir bir bilgi kaynağı sunuyoruz.
+        </p>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="Yeşil Sektör Logo (1).png" width="100">
+        </div>
+        
+        <div class="footer-columns">
+            <div class="col">
+                <b>Platform</b>
+                <a href="#" id="scrollTop">Ana Sayfa</a>
+                <a href="parabolica.html">Parabolica</a>
+                <a href="apex26.html">Apex26</a>
+            </div>
+
+            <div class="col">
+                <b>Sosyal Medya</b>
+                <a target="_blank" href="https://www.instagram.com/yesil_sektor/">Instagram</a>
+                <a target="_blank" href="https://www.linkedin.com/company/ye%C5%9Fil-sekt%C3%B6r/">LinkedIn</a>
+            </div>
+
+            <div class="col">
+                <b>Kurumsal</b>
+                <a href="iletisim.html">İletişim</a>
+                <a href="ekibimiz.html">Ekibimiz</a>
+                <a href="misyonumuz.html">Misyonumuz</a>
+                <a href="kvkk.html">KVKK Metni</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
