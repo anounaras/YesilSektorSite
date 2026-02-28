@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Parabolica</title>
+    <style>
+        /* PARABOLICA PREMIUM TEMA - 003724 ODAKLI */
+        body.parabolica {
+            background-color: #001a11; /* Daha da koyu bir yeşil zemin */
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAVBAR UYUMU (Eğer style.css'de yoksa diye) */
+        .navbar {
+            
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* HERO SECTION */
+        .hero-banner {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 55, 36, 0.6), #001a11), 
+                        url(https://f1chronicle.com/wp-content/uploads/2023/08/SI201412041203-scaled.jpg) center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-banner h1 {
+            font-size: clamp(3rem, 10vw, 7.5rem);
+            font-weight: 900;
+            letter-spacing: 15px;
+            margin: 0;
+            color: #ffffff;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-banner p {
+            font-size: 1.4rem;
+            color: yellowgreen; /* Altın rengi vurgu premium hissi artırır */
+            letter-spacing: 8px;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        /* ANA İÇERİK KARTI */
+        .content-section {
+            max-width: 1200px;
+            margin: -80px auto 100px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .main-card {
+            background: #003724; /* İstediğin ana renk */
+            border-radius: 40px;
+            padding: 70px;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .text-side h2 {
+            font-size: 2.8rem;
+            margin-bottom: 25px;
+            color: #ffffff;
+        }
+
+        .text-side h2 span {
+            color: yellowgreen;
+        }
+
+        .text-side p {
+            color: #e0e0e0;
+            line-height: 1.8;
+            font-size: 1.15rem;
+        }
+
+        /* ÖZELLİK KUTULARI */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .f-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 25px;
+            border-radius: 20px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .f-box:hover {
+            background: #ffffff;
+            transform: scale(1.05);
+            transition: 0.5s;
+        }
+
+        .f-box:hover h4, .f-box:hover p {
+            color: #003724;
+        }
+
+        .f-box h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.25rem;
+            color: yellowgreen;
+        }
+
+        /* GÖRSEL ALAN */
+        .image-side {
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .image-side img {
+            width: 100%;
+            display: block;
+            transition: transform 0.8s;
+        }
+
+        .image-side:hover img {
+            transform: scale(1.1);
+        }
+
+        /* FOOTER TASARIMIN (BOZULMADI) */
+        .footer {
+            margin-top: auto;
+        }
+
+        .footer-container {
+            margin: 0 auto; 
+            width: 90%;
+            background: #1b1b1b;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            padding: 60px;
+            color: white;
+            box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .col b {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .col a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 15px;
+            transition: 0.2s;
+            font-weight: 600;
+        }
+
+        .col a:hover {
+            color: #003724; /* Hover rengi senin renginle güncellendi */
+        }
+
+        /* MOBİL UYUMLULUK */
+        @media (max-width: 992px) {
+            .grid-layout { grid-template-columns: 1fr; }
+            .main-card { padding: 40px 20px; }
+            .hero-banner h1 { font-size: 3.5rem; letter-spacing: 5px; }
+            .footer-columns { flex-direction: column; gap: 40px; text-align: center; }
+        }
+        .navbar {
+    /* Mevcut kodlarına ek olarak: */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: transform 0.4s ease-in-out; /* Pürüzsüz hareket için */
+}
+
+/* Menüyü yukarı gizleyecek olan sınıf */
+.navbar-hidden {
+    transform: translateY(-100%);
+}
+    </style>
+</head>
+<body class="parabolica">
+
+<header class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img width="100px" src="Yeşil Sektör Logo (1).png" alt="Logo">
+            </a>
+        </div>
+        <nav class="menu">
+            <a href="index.html" class="nav-anasayfa">Ana Sayfa</a>
+            <a href="iletisim.html" class="nav-iletisim">İletişim</a>
+            <a href="ekibimiz.html" class="nav-ekibimiz">Ekibimiz</a>
+            <a href="misyonumuz.html" class="nav-misyonumuz">Misyonumuz</a>
+            <a href="kvkk.html" class="nav-kvkk">KVKK Metni</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="hero-banner">
+        <h1>PARABOLICA</h1>
+        
+    </section>
+
+    <section class="content-section">
+        <div class="main-card">
+            <div class="grid-layout">
+                <div class="text-side">
+                    <h2>Hızın En <span>Zarif Hali</span></h2>
+                    <p>
+                        Parabolica, motorsporlarının dev isimlerini Yeşil Sektör çatısı altında buluşturuyor. 
+                        Bu sadece bir etkinlik değil; mühendisliğin, hızın ve tutkunun en üst düzeyde sergilendiği bir festival. 
+                        Sektörün öncüleriyle tanışın, efsanevi araçları yakından inceleyin.
+                    </p>
+                    <div class="feature-grid">
+                        <div class="f-box">
+                            <h4>Özel Deneyim</h4>
+                            <p>Pist üstü aktiviteler ve sürüş simülasyonları.</p>
+                        </div>
+                        <div class="f-box">
+                            <h4>Networking</h4>
+                            <p>Sektörün en iyileriyle doğrudan iletişim kurun.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="image-side">
+                    <img src="parabolica.png" alt="Racing Car">
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="Yeşil Sektör Logo (1).png" width="100">
+        </div>
+        
+        <div class="footer-columns">
+            <div class="col">
+                <b>Platform</b>
+                <a href="index.html">Ana Sayfa</a>
+                <a href="parabolica.html">Parabolica</a>
+                <a href="apex26.html">Apex26</a>
+            </div>
+
+            <div class="col">
+                <b>Sosyal Medya</b>
+                <a target="_blank" href="https://www.instagram.com/yesil_sektor/">Instagram</a>
+                <a target="_blank" href="https://www.linkedin.com/company/ye%C5%9Fil-sekt%C3%B6r/">LinkedIn</a>
+            </div>
+
+            <div class="col">
+                <b>Kurumsal</b>
+                <a href="iletisim.html">İletişim</a>
+                <a href="ekibimiz.html">Ekibimiz</a>
+                <a href="misyonumuz.html">Misyonumuz</a>
+                <a href="kvkk.html">KVKK Metni</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="ssc">
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
+
+    window.addEventListener('scroll', function() {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            // Aşağı kaydırırken ve sayfa başından biraz uzaklaşınca gizle
+            navbar.classList.add('navbar-hidden');
+        } else {
+            // Yukarı kaydırırken göster
+            navbar.classList.remove('navbar-hidden');
+        }
+        lastScrollTop = scrollTop;
+    });
+</script>
+</body>
+</html>

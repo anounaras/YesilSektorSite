@@ -1,0 +1,246 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Raleway", sans-serif;
+    background-color: #003724;
+}
+/* Scroll genişliği */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Arka kanal */
+::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.25);
+}
+
+/* Scroll thumb */
+::-webkit-scrollbar-thumb {
+    border-radius: 30px;
+    background: linear-gradient(
+        180deg,
+        #001f15,
+        #003724,
+        #001f15
+    );
+    position: relative;
+    box-shadow: 
+        0 0 8px rgba(0,55,36,0.4),
+        inset 0 0 4px rgba(255,255,255,0.05);
+}
+
+/* Hover durumunda canlılaşsın */
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #003724,
+        #005c3d,
+        #003724
+    );
+    box-shadow: 
+        0 0 12px rgba(0,55,36,0.7);
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #003724 rgba(0,0,0,0.25);
+}
+.section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.navbar {
+            width: 100%;
+            padding: 20px 0;
+            background: #1b1b1b; /* hafif cam efekti */
+            backdrop-filter: blur(10px);
+            position: relative;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: #1b1b1b;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: top 0.3s; /* burada menü kayarken yumuşak hareket */
+        }
+
+        .nav-container {
+            width: 85%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo img {
+            width: 80px;
+            height: auto;
+        }
+
+        /* Menü */
+        .menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        /* İnce premium alt çizgi */
+        .menu a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: #003724;
+            left: 0;
+            bottom: -6px;
+            transition: 0.3s ease;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu a:hover {
+            color: yellowgreen;
+        }
+        .nav-container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        }
+
+        .logo {
+                justify-self: center;
+        }
+
+        .menu{
+                justify-self: end;
+         }
+
+.menu a {
+    position: relative;
+}
+
+.menu a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0%;
+    height: 2px;
+    background: #003724;
+    transition: 0.3s;
+}
+
+.anasayfa .nav-anasayfa::after,
+.aboutus .nav-aboutus::after,
+.iletisim .nav-iletisim::after,
+.ekibimiz .nav-ekibimiz::after,
+.misyonumuz .nav-misyonumuz::after,
+.kvkk .nav-kvkk::after{
+    width: 100%;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #ccc;
+    font-weight: 600;
+    transition: 0.3s;
+    padding: 8px 15px;
+}
+
+/* Aktif sayfa rengi */
+.anasayfa .nav-anasayfa,
+.aboutus .nav-aboutus,
+.iletisim .nav-iletisim, 
+.ekibimiz .nav-ekibimiz,
+.misyonumuz .nav-misyonumuz,
+.kvkk .nav-kvkk{
+    color: greenyellow;
+}
+
+        /* FOOTER */
+        .footer {
+            margin-top: auto;
+            
+        }
+
+        .footer-container {
+            margin: 0 auto; 
+            width: 90%;
+            background: #1b1b1b;
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            padding: 60px;
+            color: white;
+            box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .col b {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .col a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 15px;
+            transition: 0.2s;
+            font-weight: 600;
+        }
+
+        .col a:hover {
+            color: #003724;
+        }
+        
