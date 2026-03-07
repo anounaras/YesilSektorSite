@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>İletişim - YTÜ Blog Hub</title>
+
+<!-- Font Awesome (ikonların çalışması için) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<link rel="stylesheet" href="styles.css">
+<script src="include.js" defer></script>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0d1117, #1b2029, #14171c);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Sayfa container */
+.contact-container {
+    width: 85%;
+    margin: 130px auto;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    animation: fadeIn 1s ease;
+}
+
+/* Kart tasarımı */
+.contact-card {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(12px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.45);
+    animation: slideUp 0.8s ease;
+    transition: 0.3s;
+}
+
+.contact-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 30px rgba(0,0,0,0.55);
+}
+
+/* Başlık */
+.contact-card h2 {
+    font-size: 23px;
+    margin-bottom: 25px;
+    color: #7dd3fc;
+}
+
+/* Form elemanları */
+input, textarea {
+    width: 100%;
+    padding: 14px;
+    background: rgba(255,255,255,0.15);
+    border: none;
+    border-radius: 12px;
+    color: #e8e8e8;
+    margin-bottom: 18px;
+    outline: none;
+    font-size: 15px;
+    transition: 0.25s;
+}
+
+input:focus, textarea:focus {
+    background: rgba(255,255,255,0.25);
+    transform: scale(1.02);
+}
+
+/* Form butonu */
+button {
+    width: 100%;
+    padding: 14px;
+    background: #3fa9f5;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0e83ff;
+    transform: scale(1.05);
+}
+
+/* Sağ kart ikon satırları */
+.icon-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: rgba(255,255,255,0.12);
+    padding: 13px 15px;
+    border-radius: 12px;
+    margin-bottom: 14px;
+    transition: 0.3s;
+    text-decoration: none;
+    color: white;
+}
+
+.icon-row:hover {
+    background: rgba(255,255,255,0.18);
+    transform: scale(1.03);
+}
+
+/* İkonlar */
+.icon-row i {
+    font-size: 26px;
+    color: #7dd3fc;
+    text-shadow: 0 0 10px #4fc3f7;
+}
+
+/* Animasyonlar */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobil uyum */
+@media (max-width: 900px) {
+    .contact-container {
+        flex-direction: column;
+        width: 92%;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="navbar"></div>
+
+<div class="contact-container">
+
+    <!-- Mesaj Gönder kartı -->
+    <div class="contact-card">
+        <h2>Bize Mesaj Gönder</h2>
+
+        <input type="text" placeholder="Adınız">
+        <input type="email" placeholder="Mail adresiniz">
+        <textarea placeholder="Mesajınızı yazın..." rows="5"></textarea>
+
+        <button>Gönder</button>
+    </div>
+
+    <!-- Sağ kart -->
+    <div class="contact-card">
+        <h2>Bize Ulaşabileceğin Hesaplar</h2>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/ytu_macka_mtal/#" target="_blank" class="icon-row">
+            <i class="fa-brands fa-instagram"></i>
+            <span>Instagram</span>
+        </a>
+
+        <!-- X -->
+        <a href="https://x.com/ytumacka_mtal" target="_blank" class="icon-row">
+            <i class="fa-brands fa-x-twitter"></i>
+            <span>Twitter (X)</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/school/ytumackamtal/posts/?feedView=all" target="_blank" class="icon-row">
+            <i class="fa-brands fa-linkedin"></i>
+            <span>LinkedIn</span>
+        </a>
+
+        <br><br>
+
+        <h2>Adres & İletişim</h2>
+
+        <div class="icon-row">
+            <i class="fa-solid fa-phone"></i>
+            <span>+90 5xx xxx xx xx</span>
+        </div>
+
+        <div class="icon-row">
+            <i class="fa-solid fa-location-dot"></i>
+            <span>İstanbul, Türkiye</span>
+        </div>
+
+        <div class="icon-row">
+            <i class="fa-solid fa-envelope"></i>
+            <span>ytubloghub@gmail.com</span>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

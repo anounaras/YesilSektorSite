@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>YTÜ Blog Hub</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0e0f14;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: rgba(20, 20, 22, 0.85);
+            padding: 20px 0;
+            color: white;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+            animation: slideDown 1s ease forwards;
+        }
+
+        @keyframes slideDown {
+            0% {opacity: 0; transform: translateY(-40px);}
+            100% {opacity: 1; transform: translateY(0);}
+        }
+
+        .nav-container {
+            width: 90%;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav a {
+            margin-left: 25px;
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 400;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #4fc3f7;
+            transform: scale(1.1);
+        }
+
+        .hero {
+            height: 350px;
+            background: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80') center/cover;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            background: rgba(0,0,0,0.45);
+            animation: pulseBg 6s infinite ease-in-out;
+        }
+
+        @keyframes pulseBg {
+            0% {transform: scale(1);}
+            50% {transform: scale(1.1);}
+            100% {transform: scale(1);}
+        }
+
+        .hero h2 {
+            position: relative;
+            z-index: 2;
+            color: white;
+            font-size: 34px;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+            opacity: 0;
+            animation: fadeIn 2s forwards 0.6s;
+        }
+
+        @keyframes fadeIn {
+            to {opacity: 1;}
+        }
+
+        .about {
+            width: 80%;
+            margin: 70px auto;
+            background: #15161d;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+            transform: translateY(60px);
+            opacity: 0;
+            animation: floatUp 1.3s ease forwards;
+        }
+
+        @keyframes floatUp {
+            0% {opacity: 0; transform: translateY(60px);}
+            100% {opacity: 1; transform: translateY(0);}
+        }
+
+        .about h2 {
+            margin-bottom: 18px;
+            font-size: 28px;
+            color: #4fc3f7;
+        }
+
+        .about p {
+            line-height: 1.8;
+            font-size: 17px;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin: 50px 0;
+            animation: fadeIn 1.8s forwards;
+            opacity: 0;
+        }
+
+        .btn {
+            padding: 14px 30px;
+            background: linear-gradient(45deg, #4fc3f7, #1976d2);
+            color: white;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 19px;
+            transition: 0.3s;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.4);
+        }
+
+        .btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        }
+
+        footer {
+            background: #111217;
+            color: #888;
+            text-align: center;
+            padding: 18px 0;
+            margin-top: 40px;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- OTOMATİK NAVBAR -->
+    <div id="navbar"></div>
+
+<section class="hero">
+    <h2>Animasyonlu Modern Blog Dünyası</h2>
+</section>
+
+<section id="about" class="about">
+    <h2>Hakkımızda</h2>
+    <p>Biz YTÜ Maçka MTAL Elektronik Bölümü öğrencileri olarak, öğrendiklerimizi paylaşmak ve kendi projelerimizi deneyimlemek için bu blogu hazırladık.</p>
+    <p>Teknolojiye olan ilgimizi, yaşadığımız süreçleri ve öğrendiğimiz küçük ipuçlarını paylaşıyoruz. Eda Hocamızın desteği sayesinde projelerimizi her seferinde biraz daha geliştiriyoruz.</p>
+    <p>Her blog, yazanın ruhunu taşıyan özgün bir hikâyedir. Umarız okurken hem eğlenirsiniz hem de kendi projeleriniz için ilham alırsınız!</p>
+    <p>Eda Hocamızın destekleri için çok teşekkür ederiz.
+</section>
+
+<div class="btn-container">
+    <a href="bloglar.html" class="btn">Bloglarımı Gör</a>
+</div>
+
+<footer>© 2025 YTÜ Blog Hub</footer>
+
+<script src="include.js"></script>
+
+</body>
+</html>
