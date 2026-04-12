@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex26 | Gift Animation</title>
+
+<style>
+body{
+    margin:0;
+    background:#003724;
+    font-family:Arial;
+}
+
+/* WRAPPER */
+.gift-wrapper{
+    width:80%;
+    margin:120px auto;
+    position:relative;
+    height:280px;
+}
+
+/* ORTAK KUTU */
+.gift-box{
+    width:100%;
+    height:280px;
+    border-radius:30px;
+    position:absolute;
+    top:0;
+    left:0;
+    cursor:pointer;
+    transition:0.6s ease;
+}
+
+/* ÖN KUTU */
+.front{
+    background:url("giftimg.png") center/cover no-repeat;
+    z-index:2;
+}
+
+/* ARKA KUTU */
+.back{
+    background:url("giftimg2.png") center/cover no-repeat;
+    z-index:1;
+    opacity:0;
+    transform:scale(1.1);
+}
+
+/* YAZI */
+.gift-text{
+    margin-top:320px;
+    text-align:center;
+    opacity:0;
+    transform:translateY(20px);
+    transition:0.6s;
+    color:white;
+}
+
+/* AÇILMA DURUMU */
+.gift-wrapper.open .front{
+    opacity:0;
+    transform:scale(0.8) rotate(5deg);
+    pointer-events:none;
+}
+
+.gift-wrapper.open .back{
+    opacity:1;
+    transform:scale(1);
+}
+
+/* yazı gelir */
+.gift-wrapper.open .gift-text{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* sallanma */
+@keyframes shake {
+    0%{transform:rotate(0)}
+    25%{transform:rotate(3deg)}
+    50%{transform:rotate(-3deg)}
+    75%{transform:rotate(3deg)}
+    100%{transform:rotate(0)}
+}
+
+.gift-wrapper.open .front{
+    animation:shake 0.4s;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="gift-wrapper" id="giftWrapper">
+
+    <!-- ÖN KUTU -->
+    <div class="gift-box front" id="frontBox"></div>
+
+    <!-- ARKA KUTU -->
+    <div class="gift-box back"></div>
+
+    <!-- YAZI -->
+    <div class="gift-text">
+        <h2>
+            "Apex26, başarıyı yalnızca sonuçla değil; süreçle, emekle ve doğru planlamayla tanımlar."
+        </h2>
+    </div>
+
+</div>
+
+<script>
+const wrapper = document.getElementById("giftWrapper");
+const front = document.getElementById("frontBox");
+
+front.addEventListener("click", () => {
+    wrapper.classList.add("open");
+});
+</script>
+
+</body>
+</html>
