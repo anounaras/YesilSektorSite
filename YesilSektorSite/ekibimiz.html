@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="minilogo.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Ekibimiz</title>
+    <style>
+        /* Genel body stili */
+        body {
+    padding-top: 100px;
+}
+        /* --- EKİBİMİZ İÇERİK --- */
+        .team-section h1 {
+            padding-top: 80px;
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #2ecc71, #27ae60);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .team-section p {
+            padding: 30px 20px;
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #ffff;
+            font-weight: 500;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(46, 204, 113, 0.2);
+            border-radius: 25px;
+            padding: 60px 40px;
+            width: 420px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+        }
+
+        .card h2 {
+            font-size: 1.8rem;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+            color: #2ecc71 !important;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding-top: 5px !important;
+        }
+
+       
+        
+
+        /* --- MOBİL UYUMLULUK --- */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 140px;
+            }
+
+            .nav-container {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+                padding: 10px;
+            }
+
+            .logo {
+                justify-self: auto;
+            }
+
+            .menu {
+                justify-self: auto;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .menu a {
+                font-size: 13px;
+                padding: 5px 8px;
+            }
+
+            .team-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 350px;
+                padding: 40px 20px;
+                transform: none !important;
+            }
+
+            .footer-container {
+                width: 95%;
+                padding: 40px 20px;
+                border-radius: 30px 30px 0 0;
+            }
+
+            .footer-columns {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 40px;
+            }
+        }
+        /* Menü güncelleme */
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: "Raleway", sans-serif;
+            background-color: #003724;
+        }
+
+        
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: #1b1b1b;
+    z-index: 1000;
+    transition: top 0.4s ease;
+}
+
+/* içerik yukarı kaymasın diye */
+body {
+    padding-top: 100px;
+}
+
+        .nav-container {
+            width: 85%;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo img {
+            width: 80px;
+            height: auto;
+        }
+
+        /* Menü */
+        .menu {
+            display: flex;
+            gap: 40px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        /* İnce premium alt çizgi */
+        .menu a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: #003724;
+            left: 0;
+            bottom: -6px;
+            transition: 0.3s ease;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu a:hover {
+            color: yellowgreen;
+        }
+        .nav-container {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        }
+
+        .logo {
+                justify-self: center;
+        }
+
+        .menu{
+                justify-self: end;
+         }
+
+
+
+        .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        background: #026643;
+        width: 0%;
+        z-index: 9999;
+        }
+        
+        /* ÜST BAR */
+        .canban {
+            width: 100%;
+            height: 80px;
+            background-color: #1f1f1f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .navbar {
+    transform: translateY(-100%);
+    transition: transform 0.5s ease;
+}
+        @keyframes moveLine{
+            from{
+                stroke-dashoffset:0;
+            }
+            to{
+                stroke-dashoffset:-1000;
+            }
+        }
+        @media (max-width: 768px) {
+    /* Navbar ve Menü Düzenlemesi */
+    .nav-container {
+        display: flex; /* Grid'den Flex'e dönerek sıkışmayı önler */
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .logo {
+        justify-self: auto;
+    }
+
+    .menu {
+        justify-self: auto;
+        gap: 10px;
+        flex-wrap: wrap; /* Menü linkleri sığmazsa alt satıra geçer */
+        justify-content: center;
+    }
+
+    .menu a {
+        font-size: 13px;
+        padding: 5px 8px;
+    }
+        }
+    </style>
+</head>
+<body class="ekibimiz">
+
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="Yeşil Sektör Logo (1).png" alt="Logo">
+                </a>
+            </div>
+
+            <nav class="menu">
+                <a href="index.html" class="nav-anasayfa">Ana Sayfa</a>
+                <a href="iletisim.html" class="nav-iletisim">İletişim</a>
+                <a href="ekibimiz.html" class="nav-ekibimiz">Ekibimiz</a>
+                <a href="misyonumuz.html" class="nav-misyonumuz">Misyonumuz</a>
+                <a href="parabolica.html" class="nav-parabolica">Parabolica</a>
+                <a href="apex26.html" class="nav-apex26">Apex26</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="bosluk" style="height: 100px;"></div>
+
+    <div class="team-section">
+        <h1>Tutku, Hız ve Ekip Ruhu</h1>
+        <p>
+            Yeşil Sektör, motor sporlarını Türkiye'de geliştirmek, gençlere destek olmak ve motor sporlarıyla ilgilenen herkesi bir araya getirmek amacıyla kurulmuştur. Ekibimiz, sosyal medya içeriklerinden etkinlik organizasyonlarına, simracing projelerinden sponsorluk iş birliklerine kadar geniş bir alanda çalışmaktadır.<br><br>
+            Birlikte, Türkiye'de motor sporlarını daha ileriye taşımak için çalışıyoruz!
+        </p>
+        
+        <div class="cards-container">
+            <div class="card">
+                <h2>Mir Bedirhan Fidan</h2>
+                <p>Kurucu</p>
+            </div>
+            <div class="card">
+                <h2>Gökalp Yüksel</h2>
+                <p>İçerik Üreticisi</p>
+            </div>
+            <div class="card">
+                <h2>Aras Mandıra</h2>
+                <p>Yazılımcı</p>
+            </div>
+            <div class="card">
+                <h2>Utku Işık</h2>
+                <p>İçerik Üreticisi</p>
+            </div>
+            <div class="card">
+                <h2>Yasin Ayaz Saraç</h2>
+                <p>İçerik Üreticisi</p>
+            </div>
+            <div class="card">
+                <h2>Enes Yiğit Cebeci</h2>
+                <p>Çok Yönlü</p>
+            </div>
+            <div class="card">
+                <h2>Ahmet Alperen Bakırcı</h2>
+                <p>İçerik Üreticisi</p>
+            </div>
+            <div class="card">
+                <h2>Yusuf İlhan</h2>
+                <p>Çok Yönlü</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bosluk" style="height: 150px;"></div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="Yeşil Sektör Logo (1).png" width="100" alt="Logo">
+            </div>
+            
+            <div class="footer-columns">
+                <div class="col">
+                    <b>Platform</b>
+                    <a href="index.html">Ana Sayfa</a>
+                    <a href="parabolica.html">Parabolica</a>
+                    <a href="apex26.html">Apex26</a>
+                </div>
+
+                <div class="col">
+                    <b>Sosyal Medya</b>
+                    <a target="_blank" href="https://www.instagram.com/yesil_sektor/">Instagram</a>
+                    <a target="_blank" href="https://www.linkedin.com/company/ye%C5%9Fil-sekt%C3%B6r/">LinkedIn</a>
+                </div>
+
+                <div class="col">
+                    <b>Kurumsal</b>
+                    <a href="iletisim.html">İletişim</a>
+                    <a href="ekibimiz.html">Ekibimiz</a>
+                    <a href="misyonumuz.html">Misyonumuz</a>
+                    <a href="kvkk.html">KVKK Metni</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script>
+let lastScroll = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    let currentScroll = window.scrollY;
+
+    if (currentScroll > lastScroll) {
+        // aşağı scroll → gizle
+        navbar.style.top = "-100px";
+    } else {
+        // yukarı scroll → göster
+        navbar.style.top = "0";
+    }
+
+    lastScroll = currentScroll;
+});
+window.addEventListener("load", () => {
+    const navbar = document.querySelector(".navbar");
+
+    setTimeout(() => {
+        navbar.style.transform = "translateY(0)";
+    }, 100);
+});
+const cards = document.querySelectorAll('.card');
+
+
+
+cards.forEach(card => {
+
+    card.addEventListener('mousemove', (e) => {
+
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+
+        const y = e.clientY - rect.top;
+
+
+
+        const centerX = rect.width / 2;
+
+        const centerY = rect.height / 2;
+
+
+
+        const rotateX = (centerY - y) / 20; // Eğimi biraz daha yumuşattım
+
+        const rotateY = (x - centerX) / 20;
+
+
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+       
+
+        
+
+        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(46, 204, 113, 0.12) 0%, rgba(255, 255, 255, 0.9) 0%)`;
+
+    });
+
+
+
+    card.addEventListener('mouseleave', () => {
+
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+
+        card.style.background = `rgba(255, 255, 255, 0.9)`;
+
+    });
+
+});
+
+</script>
+    </body>
+        </html>
