@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="minilogo.png">
+<link rel="stylesheet" href="style.css">
+<title>Yeşil Sektör</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        /* MOBİLDE YATAY TAŞMAYI ENGELLEYEN KOD (Zorunlu) */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: "Raleway", sans-serif;
+            background-color: #003724;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: #1b1b1b;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .nav-container {
+            width: 85%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo {
+            justify-self: center;
+        }
+
+        .logo img {
+            width: 80px;
+            height: auto;
+        }
+
+        /* Menü */
+        .menu {
+            display: flex;
+            gap: 40px;
+            justify-self: end;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        /* İnce premium alt çizgi */
+        .menu a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: #003724;
+            left: 0;
+            bottom: -6px;
+            transition: 0.3s ease;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu a:hover {
+            color: yellowgreen;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #026643;
+            width: 0%;
+            z-index: 9999;
+        }
+
+        /* ÜST BAR */
+        .canban {
+            width: 100%;
+            height: 80px;
+            background-color: #1f1f1f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* ANA YAZI */
+        #anayazi {
+            text-align: center;
+            font-size: 70px;
+            font-weight: 600;
+            margin-top: 450px;
+            color: white;
+            cursor: pointer;
+        }
+
+        #anayazi b {
+            background-color: greenyellow;
+            color: black;
+        }
+
+        .aboutusbox {
+            text-align: center;
+            position: relative;
+            margin: 100px auto 250px auto; 
+            width: 900px;
+            height: 800px;
+            background-color: #1b1b1b;
+            border-radius: 60px;
+            box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .aboutusbox h1 {
+            padding-top: 50px;
+            color: #ffff;
+            text-shadow: 0 -0px 2px #ffff;
+            font-size: 60px;
+            margin: 0; 
+        }
+
+        .aboutusbox pre {
+            font-size: 25px;
+            font-family: "Raleway", sans-serif;
+            font-weight: bolder;
+            color: #ccc;
+            text-align: center; 
+            white-space: pre-line; 
+            padding: 0 20px; 
+        }
+        
+        .border-line{
+            position:absolute;
+            inset:0;
+            width:100%;
+            height:100%;
+            pointer-events:none;
+        }
+
+        .moving-line{
+            fill:none;
+            stroke:#004930;
+            stroke-width:3;
+            stroke-linecap:round;
+            stroke-dasharray:80 1000;  
+            stroke-dashoffset:0;
+            animation:moveLine 20s linear infinite;
+        }
+
+        @keyframes moveLine{
+            from{
+                stroke-dashoffset:0;
+            }
+            to{
+                stroke-dashoffset:-1000;
+            }
+        }
+
+        .parabolicaanasayfa {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin-left: 400px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .parabolicaanasayfa img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s ease;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.1),
+                rgba(0,0,0,0.6)
+            );
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: 0.5s ease;
+        }
+
+        /* Yazılar */
+        .overlay span {
+            font-size: 42px;
+            font-weight: 700;
+            color: #ccc;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            transform: translateY(20px);
+            transition: 0.4s ease;
+        }
+        .overlay a{
+            text-decoration: none;
+        }
+
+        .overlay p {
+            color: yellowgreen;
+            font-size: 16px;
+            transform: translateY(20px);
+            transition: 0.4s ease;
+        }
+
+        /* Hover Efekti */
+        .parabolicaanasayfa:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+
+        .parabolicaanasayfa:hover .overlay {
+            opacity: 1;
+        }
+
+        .parabolicaanasayfa:hover .overlay span,
+        .parabolicaanasayfa:hover .overlay p {
+            transform: translateY(0);
+        }
+        
+        .apex26anasayfa {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin-left: 1500px;
+            border-radius: 50%;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .apex26anasayfa  img {
+            width: 90%;
+            height: 90%;
+            object-fit: cover;
+            transition: 0.5s ease;
+        }
+
+        /* Overlay */
+        .overlay26 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.1),
+                rgba(0,0,0,0.6)
+            );
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            opacity: 0;
+            transition: 0.5s ease;
+        }
+
+        /* Yazılar */
+        .overlay26 span {
+            font-size: 42px;
+            font-weight: 700;
+            color: #ccc;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            transform: translateY(20px);
+            transition: 0.4s ease;
+        }
+        .overlay26 a{
+            text-decoration: none;
+        }
+
+        .overlay26 p {
+            color: yellowgreen;
+            font-size: 16px;
+            transform: translateY(20px);
+            transition: 0.4s ease;
+        }
+
+        /* Hover Efekti */
+        .apex26anasayfa:hover img {
+            transform: scale(1.1);
+            filter: brightness(0.7);
+        }
+
+        .apex26anasayfa:hover .overlay26 {
+            opacity: 1;
+        }
+
+        .apex26anasayfa:hover .overlay26 span,
+        .apex26anasayfa:hover .overlay26 p {
+            transform: translateY(0);
+        }
+
+
+/* ========================================================= */
+/* --- YENİLENMİŞ MOBİL UYUMLULUK KODLARI (MAX-WIDTH: 768PX) --- */
+/* ========================================================= */
+@media (max-width: 768px) {
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+        padding: 10px 0;
+    }
+
+    .nav-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        width: 100%;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .menu a {
+        font-size: 14px;
+        padding: 5px;
+    }
+
+    /* ===== ANA BAŞLIK ===== */
+    #anayazi {
+        font-size: 32px;
+        margin-top: 150px;
+        padding: 0 15px;
+        line-height: 1.4;
+    }
+
+    /* ===== HAKKIMIZDA (ABOUT US) ===== */
+    .aboutusbox {
+        width: 90%;
+        height: auto;
+        padding: 30px 10px 50px 10px;
+        margin: 50px auto;
+        border-radius: 30px;
+    }
+
+    .aboutusbox h1 {
+        font-size: 32px;
+        padding-top: 20px;
+    }
+
+    .aboutusbox pre {
+        font-size: 15px;
+        white-space: pre-wrap;
+        text-align: center;
+        padding: 0 10px;
+    }
+    
+    .aboutusbox img {
+        margin-left: 0 !important;
+        margin-top: 30px !important;
+    }
+
+    .border-line {
+        display: none;
+    }
+
+    /* ===== ETKİNLİK KARTLARI (EN ÖNEMLİ KISIM) ===== */
+    /* Devasa margin-left değerleri mobilde sıfırlanıp ortalandı */
+    .parabolicaanasayfa,
+    .apex26anasayfa {
+        width: 280px !important;
+        height: 280px !important;
+        margin: 30px auto !important; 
+        display: block !important;
+        position: relative;
+    }
+
+    /* Logonun kesilmesini (dışarıda kalmasını) engellemek için contain eklendi */
+    .parabolicaanasayfa img,
+    .apex26anasayfa img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important; /* Görselin tamamını daire içine sığdırır */
+        padding: 10px; /* Kenarlara yapışmaması için hafif bir boşluk */
+    }
+
+    /* ===== OVERLAY TEXT YAZILARI ===== */
+    .overlay span,
+    .overlay26 span {
+        font-size: 28px;
+    }
+
+    .overlay p,
+    .overlay26 p {
+        font-size: 14px;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    /* ===== AŞIRI BOŞLUKLARI TEMİZLEME ===== */
+    .bosluk {
+        height: 50px !important;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-container {
+        width: 100%;
+        padding: 30px 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-columns {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 30px;
+        width: 100%;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    .col b {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .footer-logo {
+        margin-bottom: 30px;
+    }
+}
+    </style>
+</head>
+
+<body class="anasayfa">
+<header class="navbar">
+    <div class="nav-container">
+        
+        <div class="logo">
+            <a href="index.html">
+            <img width="100px"  src="Yeşil Sektör Logo (1).png" alt="Logo">
+            </a>
+        </div>
+
+        <nav class="menu">
+            <a href="index.html" class="nav-anasayfa">Ana Sayfa</a>
+            <a href="iletisim.html" class="nav-iletisim">İletişim</a>
+            <a href="ekibimiz.html" class="nav-ekibimiz">Ekibimiz</a>
+            <a href="misyonumuz.html" class="nav-misyonumuz">Misyonumuz</a>
+            <a href="parabolica.html" class="nav-parabolica">Parabolica</a>
+            <a href="apex26.html" class="nav-apex26">Apex26</a>
+        </nav>
+
+    </div>
+</header>
+
+<div id="anayazi">
+    <p>Limitlerini Aş <b>Zirveye Ulaş</b></p>
+</div>
+
+<div class="bosluk" style="height: 400px;"></div>
+<div class="aboutusbox">
+    <svg class="border-line" viewBox="0 0 900 800">
+        <rect x="2" y="2" width="896" height="796" rx="55" ry="55"
+                pathLength="1000" class="moving-line"/>
+    </svg>
+
+    <h1>Hakkımızda</h1>
+    <div style="height: 90px;"></div>
+    <pre>
+    Yeşil Sektör, Türkiye'de Motor Sporlarının
+        Gelişimini Desteklemek 
+    ve Gençlere Rehberlik Etmek Amacıyla
+        Kurulmuş Bir Platformdur. 
+    Sosyal Medya Üzerinden Motor Sporları
+        Haberleri Paylaşır, 
+    Etkinlikler Düzenler ve Genç Girişimcileri
+        Bir Araya Getiririz.
+
+    Amacımız, Motor Sporlarına İlgiyi
+        Artırmak ve Genç Yeteneklere 
+    İlham Vermektir. Profesyonel
+        Yaklaşımımız ve Topluluğumuza 
+    Kattığımız Değerlerle Fark Yaratıyoruz.
+    </pre>
+    <img style="width: 60px; margin-top: 70px; margin-left: 30px;" src="Yeşil Sektör Logo (1).png" alt="">
+</div>
+
+<div class="bosluk" style="height: 10px;"></div>
+
+<div class="parabolicaanasayfa">
+    <img src="parabolica.png" alt="Parabolica">
+    
+    <div class="overlay">
+        <a href="parabolica.html"><span>Parabolica</span></a>
+        <p>Etkinlik hakkında bilgi almak için tıklayın!</p>
+    </div>
+</div>
+
+<div class="apex26anasayfa">
+    <img src="Apex 26 Logo Png.png" alt="Parabolica">
+    <div class="overlay26">
+        <a href="apex26.html"><span>Apex26</span></a>
+        <p>Etkinlik hakkında bilgi almak için tıklayın!</p>
+    </div>
+</div>
+
+<div class="bosluk" style="height: 200px;"></div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="Yeşil Sektör Logo (1).png" width="100">
+        </div>
+        
+        <div class="footer-columns">
+            <div class="col">
+                <b>Platform</b>
+                <a href="#" id="scrollTop">Ana Sayfa</a>
+                <a href="parabolica.html">Parabolica</a>
+                <a href="apex26.html">Apex26</a>
+            </div>
+
+            <div class="col">
+                <b>Sosyal Medya</b>
+                <a target="_blank" href="https://www.instagram.com/yesil_sektor/">Instagram</a>
+                <a target="_blank" href="https://www.linkedin.com/company/ye%C5%9Fil-sekt%C3%B6r/">LinkedIn</a>
+            </div>
+
+            <div class="col">
+                <b>Kurumsal</b>
+                <a href="iletisim.html">İletişim</a>
+                <a href="ekibimiz.html">Ekibimiz</a>
+                <a href="misyonumuz.html">Misyonumuz</a>
+                <a href="kvkk.html">KVKK Metni</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+renk kodu: 003724
+background-color: rgb(31, 31, 31);
