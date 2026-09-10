@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="minilogo.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Yapım Aşamasında | Yeşil Sektör</title>
+
+    <!-- Modern Premium Font Deneyimi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-accent: #00e676;
+            --primary-glow: rgba(0, 230, 118, 0.25);
+            --bg-dark: #0a0c0e;
+            --card-bg: rgba(18, 22, 25, 0.65);
+            --border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: #e0e6ed;
+            overflow-x: hidden;
+            position: relative;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Ambient Arka Plan Parlamaları */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: 15%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.14) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -15%;
+            right: 10%;
+            width: 550px;
+            height: 550px;
+            background: radial-gradient(circle, rgba(0, 120, 212, 0.1) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+            100% { transform: scale(1.2) translate(-30px, 30px); opacity: 1; }
+        }
+
+
+        .logo-wrap {
+            margin-bottom: 35px;
+        }
+
+        .logo-wrap img {
+            width: 110px;
+            height: auto;
+            filter: drop-shadow(0 0 25px var(--primary-glow));
+            animation: floatLogo 4s ease-in-out infinite;
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .gear-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 25px auto;
+            display: block;
+            animation: spinGear 6s linear infinite;
+        }
+
+        .gear-icon path {
+            fill: var(--primary-accent);
+            filter: drop-shadow(0 0 10px var(--primary-glow));
+        }
+
+        @keyframes spinGear {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .construction-box h1 {
+            font-size: 40px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+        }
+
+        .construction-box h1 span {
+            color: var(--primary-accent);
+            text-shadow: 0 0 20px var(--primary-glow);
+        }
+
+        .construction-box p {
+            font-size: 16px;
+            font-weight: 400;
+            color: #b0bec5;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        /* İlerleme Çubuğu (Dekoratif) */
+        .progress-track {
+            width: 100%;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 14px;
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--primary-accent), #00c853);
+            box-shadow: 0 0 15px var(--primary-glow);
+            animation: fillProgress 2.5s ease-out forwards, shimmer 2s linear infinite 2.5s;
+        }
+
+        @keyframes fillProgress {
+            from { width: 0%; }
+            to { width: 72%; }
+        }
+
+        @keyframes shimmer {
+            0% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+            100% { filter: brightness(1); }
+        }
+
+        .progress-label {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--primary-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
+
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 34px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary-accent), #00c853);
+            color: #0a0c0e;
+            font-weight: 800;
+            font-size: 15px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 10px 25px var(--primary-glow);
+            transition: all 0.3s ease;
+        }
+
+        .back-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px var(--primary-glow);
+            filter: brightness(1.1);
+        }
+
+        .socials {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .socials a {
+            color: #90a4ae;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            position: relative;
+            transition: 0.3s ease;
+        }
+
+        .socials a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--primary-accent);
+            transition: width 0.3s ease;
+        }
+
+        .socials a:hover {
+            color: #ffffff;
+        }
+
+        .socials a:hover::after {
+            width: 100%;
+        }
+
+        /* --- MOBİL UYUMLULUK --- */
+        @media (max-width: 768px) {
+            .construction-box {
+                padding: 50px 25px;
+                border-radius: 26px;
+            }
+
+            .construction-box h1 {
+                font-size: 28px;
+            }
+
+            .construction-box p {
+                font-size: 14px;
+            }
+
+            .logo-wrap img {
+                width: 85px;
+            }
+
+            .back-home {
+                padding: 14px 26px;
+                font-size: 13px;
+            }
+
+            .socials {
+                flex-wrap: wrap;
+                gap: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="construction-box">
+
+        <div class="logo-wrap">
+            <a href="index.html">
+                <img src="Yeşil Sektör Logo (1).png" alt="Yeşil Sektör Logo">
+            </a>
+        </div>
+
+        <svg class="gear-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19.14,12.94c0.04,-0.3 0.06,-0.61 0.06,-0.94c0,-0.32 -0.02,-0.64 -0.07,-0.94l2.03,-1.58c0.18,-0.14 0.23,-0.41 0.12,-0.61 l-1.92,-3.32c-0.12,-0.22 -0.37,-0.29 -0.59,-0.22l-2.39,0.96c-0.5,-0.38 -1.03,-0.7 -1.62,-0.94L14.4,2.81 c-0.04,-0.24 -0.24,-0.41 -0.48,-0.41h-3.84c-0.24,0 -0.43,0.17 -0.47,0.41L9.25,5.35C8.66,5.59 8.12,5.92 7.63,6.29L5.24,5.33 c-0.22,-0.08 -0.47,0 -0.59,0.22L2.74,8.87C2.62,9.08 2.66,9.34 2.86,9.48l2.03,1.58C4.84,11.36 4.8,11.69 4.8,12s0.02,0.64 0.07,0.94 l-2.03,1.58c-0.18,0.14 -0.23,0.41 -0.12,0.61l1.92,3.32c0.12,0.22 0.37,0.29 0.59,0.22l2.39,-0.96c0.5,0.38 1.03,0.7 1.62,0.94 l0.36,2.54c0.05,0.24 0.24,0.41 0.48,0.41h3.84c0.24,0 0.44,-0.17 0.47,-0.41l0.36,-2.54c0.59,-0.24 1.13,-0.56 1.62,-0.94l2.39,0.96 c0.22,0.08 0.47,0 0.59,-0.22l1.92,-3.32c0.12,-0.22 0.07,-0.47 -0.12,-0.61L19.14,12.94z M12,15.6c-1.98,0 -3.6,-1.62 -3.6,-3.6 s1.62,-3.6 3.6,-3.6s3.6,1.62 3.6,3.6S13.98,15.6 12,15.6z"/>
+        </svg>
+
+        <h1>Bu Sayfa <span>Yapım Aşamasında</span></h1>
+        <p>
+            Yeşil Sektör ekibi olarak bu sayfa üzerinde çalışıyoruz.
+            Çok yakında motor sporları dünyasına dair içeriklerle burada olacağız.
+            Takipte kalın!
+        </p>
+
+        <div class="progress-track">
+            <div class="progress-fill"></div>
+        </div>
+        <p class="progress-label">Hazırlıklar devam ediyor</p>
+
+        <div class="socials">
+            <a target="_blank" href="https://www.instagram.com/yesil_sektor/">Instagram</a>
+            <a target="_blank" href="https://www.linkedin.com/company/ye%C5%9Fil-sekt%C3%B6r/">LinkedIn</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="minilogo.png">
+<link rel="stylesheet" href="style.css">
+<title>Yeşil Sektör</title>
+
+<!-- Modern Premium Font Deneyimi -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+    :root {
+        --primary-accent: #00e676;
+        --primary-glow: rgba(0, 230, 118, 0.25);
+        --bg-dark: #0a0c0e;
+        --card-bg: rgba(18, 22, 25, 0.65);
+        --border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+        background-color: var(--bg-dark);
+        color: #e0e6ed;
+        overflow-x: hidden;
+        position: relative;
+    }
+
+    /* Ambient Arka Plan Parlamaları */
+    body::before {
+        content: '';
+        position: fixed;
+        top: -20%;
+        left: 20%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(0, 230, 118, 0.12) 0%, rgba(0,0,0,0) 70%);
+        z-index: -1;
+        animation: pulseGlow 8s infinite alternate ease-in-out;
+        pointer-events: none;
+    }
+
+    body::after {
+        content: '';
+        position: fixed;
+        bottom: -10%;
+        right: 10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(0, 120, 212, 0.08) 0%, rgba(0,0,0,0) 70%);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    @keyframes pulseGlow {
+        0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+        100% { transform: scale(1.2) translate(-30px, 30px); opacity: 1; }
+    }
+
+    /* ============ NAVBAR (DOKUNULMADI) ============ */
+    .navbar {
+        width: 100%;
+        padding: 20px 0;
+        background: #1b1b1b;
+        backdrop-filter: blur(10px);
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        transition: top 0.3s;
+    }
+
+    .nav-container {
+        width: 85%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+    }
+
+    .logo {
+        justify-self: center;
+    }
+
+    .logo img {
+        width: 80px;
+        height: auto;
+    }
+
+    .menu {
+        justify-self: end;
+        display: flex;
+        gap: 40px;
+    }
+
+    .menu a {
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        position: relative;
+        transition: 0.3s;
+    }
+
+    .menu a::after {
+        content: "";
+        position: absolute;
+        width: 0%;
+        height: 2px;
+        background: var(--primary-accent);
+        left: 0;
+        bottom: -6px;
+        transition: 0.3s ease;
+    }
+
+    .menu a:hover::after {
+        width: 100%;
+    }
+
+    .menu a:hover {
+        color: var(--primary-accent);
+        text-shadow: 0 0 8px var(--primary-glow);
+    }
+    /* ============ NAVBAR SONU ============ */
+
+    .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 4px;
+        background: var(--primary-accent);
+        width: 0%;
+        z-index: 9999;
+    }
+
+    /* ANA YAZI */
+    .hero {
+        margin-top: 160px;
+        padding: 80px 20px 40px 20px;
+        text-align: center;
+    }
+
+    #anayazi p {
+        font-size: 70px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -1px;
+        cursor: default;
+        padding-top: 200px;
+        padding-bottom: 300px;
+    }
+
+    #anayazi b {
+        background: none;
+        color: var(--primary-accent);
+        text-shadow: 0 0 20px var(--primary-glow);
+    }
+
+    /* HAKKIMIZDA - GLASSMORPHISM KUTU */
+    .misyon-main {
+        padding: 40px 0 80px 0;
+        display: flex;
+        justify-content: center;
+        perspective: 1000px;
+    }
+
+    .aboutusbox {
+        max-width: 900px;
+        width: 90%;
+        margin: 0 auto;
+        color: #ffffff;
+        line-height: 1.8;
+        text-align: center;
+        position: relative;
+
+        background: var(--card-bg);
+        padding: 60px;
+        border-radius: 28px;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.3s ease;
+        transform-style: preserve-3d;
+        overflow: hidden;
+    }
+
+    .aboutusbox h1 {
+        font-size: 48px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: -1px;
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .aboutusbox h1::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-accent), transparent);
+        margin: 15px auto 0 auto;
+        border-radius: 2px;
+    }
+
+    .aboutusbox pre {
+        font-size: 17px;
+        font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+        font-weight: 400;
+        color: #b0bec5;
+        text-align: center;
+        white-space: pre-line;
+        padding: 0 20px;
+        margin-top: 35px;
+    }
+
+    .border-line {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+    }
+
+    .moving-line {
+        fill: none;
+        stroke: var(--primary-accent);
+        opacity: 0.5;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: 80 1000;
+        stroke-dashoffset: 0;
+        animation: moveLine 20s linear infinite;
+    }
+
+    @keyframes moveLine {
+        from { stroke-dashoffset: 0; }
+        to { stroke-dashoffset: -1000; }
+    }
+
+    /* ============ APEX26 BAŞVURU FORMU ============ */
+    .apex26-form-section {
+        padding: 0 0 80px 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .apex26-form-container {
+        max-width: 850px;
+        width: 90%;
+        margin: 0 auto;
+        padding: 55px 60px;
+        border-radius: 28px;
+        background: var(--card-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--border-color);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .apex26-form-container:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 35px 70px rgba(0, 0, 0, 0.7), 0 0 30px var(--primary-glow);
+    }
+
+    .apex26-form-container h2 {
+        text-align: center;
+        color: #ffffff;
+        font-size: 42px;
+        font-weight: 800;
+        margin-bottom: 10px;
+        letter-spacing: -1px;
+        position: relative;
+    }
+
+    .apex26-form-container h2::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-accent), transparent);
+        margin: 12px auto 0 auto;
+        border-radius: 2px;
+    }
+
+    .apex26-form-container .form-subtitle {
+        text-align: center;
+        color: #b0bec5;
+        font-size: 15px;
+        margin-bottom: 35px;
+        margin-top: 20px;
+    }
+
+    .apex26-form-container label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--primary-accent);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .apex26-form-container input,
+    .apex26-form-container textarea {
+        width: 100%;
+        padding: 16px 20px;
+        margin-bottom: 25px;
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
+        background: rgba(10, 12, 14, 0.6);
+        color: #ffffff;
+        font-size: 16px;
+        font-family: inherit;
+        backdrop-filter: blur(6px);
+        transition: all 0.3s ease;
+    }
+
+    .apex26-form-container input:focus,
+    .apex26-form-container textarea:focus {
+        outline: none;
+        border-color: var(--primary-accent);
+        background: rgba(10, 12, 14, 0.85);
+        box-shadow: 0 0 15px var(--primary-glow);
+    }
+
+    .apex26-form-container button {
+        width: 100%;
+        padding: 18px;
+        font-size: 18px;
+        font-weight: 800;
+        border: none;
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--primary-accent), #00c853);
+        color: #0a0c0e;
+        cursor: pointer;
+        box-shadow: 0 10px 25px var(--primary-glow);
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .apex26-form-container button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 35px var(--primary-glow);
+        filter: brightness(1.1);
+    }
+
+    .apex26-form-container button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .form-status {
+        text-align: center;
+        margin-top: 18px;
+        font-size: 14px;
+        font-weight: 600;
+        min-height: 20px;
+    }
+
+    .form-status.success {
+        color: var(--primary-accent);
+    }
+
+    .form-status.error {
+        color: #ff5252;
+    }
+    /* ============ APEX26 FORM SONU ============ */
+
+    /* ETKİNLİK KARTLARI */
+    .events-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 100px;
+        flex-wrap: wrap;
+        padding: 20px 20px 100px 20px;
+    }
+
+    .parabolicaanasayfa,
+    .apex26anasayfa {
+        position: relative;
+        width: 420px;
+        height: 420px;
+        border-radius: 28px;
+        overflow: hidden;
+        cursor: pointer;
+        background: var(--card-bg);
+        border: 1px solid var(--border-color);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .parabolicaanasayfa:hover,
+    .apex26anasayfa:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 40px 70px rgba(0, 0, 0, 0.7),
+                    0 0 30px var(--primary-glow);
+    }
+
+    .parabolicaanasayfa img,
+    .apex26anasayfa img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s ease;
+    }
+
+    .overlay,
+    .overlay26 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        background: linear-gradient(
+            135deg,
+            rgba(255,255,255,0.08),
+            rgba(0,0,0,0.75)
+        );
+
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+
+        opacity: 0;
+        transition: 0.5s ease;
+    }
+
+    .overlay span,
+    .overlay26 span {
+        font-size: 36px;
+        font-weight: 700;
+        color: #ffffff;
+        letter-spacing: 1px;
+        margin-bottom: 12px;
+        transform: translateY(20px);
+        transition: 0.4s ease;
+    }
+
+    .overlay a,
+    .overlay26 a {
+        text-decoration: none;
+    }
+
+    .overlay p,
+    .overlay26 p {
+        color: var(--primary-accent);
+        font-size: 15px;
+        transform: translateY(20px);
+        transition: 0.4s ease;
+    }
+
+    .parabolicaanasayfa:hover img,
+    .apex26anasayfa:hover img {
+        transform: scale(1.1);
+        filter: brightness(0.6);
+    }
+
+    .parabolicaanasayfa:hover .overlay,
+    .apex26anasayfa:hover .overlay26 {
+        opacity: 1;
+    }
+
+    .parabolicaanasayfa:hover .overlay span,
+    .parabolicaanasayfa:hover .overlay p,
+    .apex26anasayfa:hover .overlay26 span,
+    .apex26anasayfa:hover .overlay26 p {
+        transform: translateY(0);
+    }
+
+    /* ============ FOOTER (index.html footer'ı korunuyor, misyonumuz stiliyle) ============ */
+    .footer {
+        margin-top: auto;
+    }
+
+    .footer-container {
+        margin: 0 auto;
+        width: 90%;
+        background: #121518;
+        border-top: 1px solid var(--border-color);
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        padding: 60px;
+        color: white;
+        box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .footer-logo {
+        text-align: center;
+        margin-bottom: 60px;
+        transition: transform 0.3s ease;
+    }
+
+    .footer-logo:hover {
+        transform: scale(1.05);
+    }
+
+    .footer-columns {
+        display: flex;
+        justify-content: center;
+        gap: 120px;
+    }
+
+    .col {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .col b {
+        font-size: 20px;
+        margin-bottom: 10px;
+        color: #ffffff;
+    }
+
+    .col a {
+        text-decoration: none;
+        color: #90a4ae;
+        font-size: 15px;
+        transition: 0.3s ease;
+        font-weight: 500;
+        position: relative;
+        width: fit-content;
+    }
+
+    .col a::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0%;
+        height: 2px;
+        background-color: var(--primary-accent);
+        transition: width 0.3s ease;
+    }
+
+    .col a:hover {
+        color: #ffffff;
+    }
+
+    .col a:hover::after {
+        width: 100%;
+    }
+    .nesrin{
+        margin-top: 200px;
+    }
+    .nesrin1{
+        margin-bottom: 200px;
+    }
+
+    /* --- MOBİL UYUMLULUK MODLARI --- */
+    @media (max-width: 768px) {
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            padding: 10px;
+        }
+
+        .logo {
+            justify-self: auto;
+        }
+
+        .menu {
+            justify-self: auto;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .menu a {
+            font-size: 13px;
+            padding: 5px 8px;
+        }
+
+        .hero {
+            margin-top: 220px;
+            padding: 40px 15px 20px 15px;
+        }
+
+        #anayazi p {
+            font-size: 32px !important;
+            line-height: 1.3;
+        }
+
+        .aboutusbox {
+            width: 95% !important;
+            padding: 40px 15px !important;
+            border-radius: 30px !important;
+            margin-bottom: 100px !important;
+        }
+
+        .aboutusbox h1 {
+            font-size: 30px !important;
+        }
+
+        .aboutusbox pre {
+            font-size: 14px !important;
+            white-space: pre-wrap !important;
+        }
+
+        .border-line { display: none; }
+
+        .apex26-form-container {
+            margin: 0 15px 60px 15px;
+            padding: 35px 20px;
+            width: auto;
+        }
+
+        .apex26-form-container h2 {
+            font-size: 30px;
+        }
+
+        .events-section {
+            gap: 30px;
+            padding: 10px 15px 60px 15px;
+        }
+
+        .parabolicaanasayfa,
+        .apex26anasayfa {
+            width: 300px !important;
+            height: 300px !important;
+        }
+
+        .footer-container {
+            padding: 40px 20px !important;
+            width: 100% !important;
+            border-radius: 30px 30px 0 0 !important;
+        }
+
+        .footer-columns {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 40px !important;
+        }
+
+        .footer-logo {
+            margin-bottom: 30px !important;
+        }
+
+        .col b {
+            font-size: 18px;
+        }
+    }
+</style>
+</head>
+
+<body class="anasayfa">
+<header class="navbar">
+    <div class="nav-container">
+
+        <div class="logo">
+            <a href="index.html">
+            <img width="100px" src="Yeşil Sektör Logo (1).png" alt="Logo">
+            </a>
+        </div>
+
+        <nav class="menu">
+            <a href="index.html" class="nav-anasayfa">Ana Sayfa</a>
+            <a href="iletisim.html" class="nav-iletisim">İletişim</a>
+            <a href="ekibimiz.html" class="nav-ekibimiz">Ekibimiz</a>
+            <a href="misyonumuz.html" class="nav-misyonumuz">Misyonumuz</a>
+            <a href="parabolica.html" class="nav-parabolica">Parabolica</a>
+            <a href="apex26.html" class="nav-apex26">Apex26</a>
+        </nav>
+
+    </div>
+</header>
+
+<div class="hero">
+    <div id="anayazi">
+        <p>Limitlerini Aş <b>Zirveye Ulaş</b></p>
+    </div>
+</div>
+
+<main class="misyon-main">
+    <div class="aboutusbox" id="interactiveCard">
+        <svg class="border-line" viewBox="0 0 900 800">
+            <rect x="2" y="2" width="896" height="796" rx="55" ry="55"
+                    pathLength="1000" class="moving-line"/>
+        </svg>
+
+        <h1>Hakkımızda</h1>
+
+        <pre>
+Yeşil Sektör, Türkiye'de Motor Sporlarının
+Gelişimini Desteklemek
+ve Gençlere Rehberlik Etmek Amacıyla
+Kurulmuş Bir Platformdur.
+Sosyal Medya Üzerinden Motor Sporları
+Haberleri Paylaşır,
+Etkinlikler Düzenler ve Genç Girişimcileri
+Bir Araya Getiririz.
+
+Amacımız, Motor Sporlarına İlgiyi
+Artırmak ve Genç Yeteneklere
+İlham Vermektir. Profesyonel
+Yaklaşımımız ve Topluluğumuza
+Kattığımız Değerlerle Fark Yaratıyoruz.
+        </pre>
+    </div>
+</main>
+<div class="nesrin"></div>
+
+<section class="apex26-form-section">
+    <div class="apex26-form-container">
+        <h2>Apex26 Başvuru Formu</h2>
+        <p class="form-subtitle">Apex26 etkinliğine katılmak için formu doldurun, sizinle iletişime geçelim.</p>
+
+        <form id="apex26Form" action="https://formspree.io/f/xvkodvwe" method="POST">
+            <label for="apex26_name">Ad Soyad:</label>
+            <input type="text" id="apex26_name" name="name" placeholder="Adınızı ve soyadınızı girin" required>
+
+            <label for="apex26_email">E-posta:</label>
+            <input type="email" id="apex26_email" name="email" placeholder="E-posta adresinizi girin" required>
+
+            <label for="apex26_phone">Telefon:</label>
+            <input type="tel" id="apex26_phone" name="phone" placeholder="Telefon numaranızı girin" required>
+
+            <label for="apex26_message">Mesajınız:</label>
+            <textarea id="apex26_message" name="message" rows="5" placeholder="Apex26 başvurunuzla ilgili eklemek istedikleriniz" required></textarea>
+
+            <button type="submit" id="apex26SubmitBtn">Başvur</button>
+            <p class="form-status" id="apex26FormStatus"></p>
+            <p class="form-status" id="apex26CooldownNotice" style="display:none;"></p>
+        </form>
+    </div>
+</section>
+<div class="nesrin1"></div>
+
+<div class="events-section">
+
+    <div class="parabolicaanasayfa">
+        <img src="parabolica.png" alt="Parabolica">
+
+        <div class="overlay">
+            <a href="parabolica.html"><span>Parabolica</span></a>
+            <p>Etkinlik hakkında bilgi almak için tıklayın!</p>
+        </div>
+    </div>
+
+    <div class="apex26anasayfa">
+        <img src="Apex 26 Logo Png.png" alt="Apex26">
+        <div class="overlay26">
+            <a href="apex26.html"><span>Apex26</span></a>
+            <p>Etkinlik hakkında bilgi almak için tıklayın!</p>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+
+        <div class="footer-logo">
+            <img src="Yeşil Sektör Logo (1).png" width="100">
+        </div>
+
+        <div class="footer-columns">
+
+            <div class="col">
+                <b>Platform</b>
+                <a href="#" id="scrollTop">Ana Sayfa</a>
+                <a href="parabolica.html">Parabolica</a>
+                <a href="apex26.html">Apex26</a>
+            </div>
+
+            <div class="col">
+                <b>Sosyal Medya</b>
+                <a target="_blank" href="https://www.instagram.com/yesil_sektor/">Instagram</a>
+                <a target="_blank" href="https://www.linkedin.com/company/ye%C5%9Fil-sekt%C3%B6r/">LinkedIn</a>
+            </div>
+
+            <div class="col">
+                <b>Kurumsal</b>
+                <a href="iletisim.html">İletişim</a>
+                <a href="ekibimiz.html">Ekibimiz</a>
+                <a href="misyonumuz.html">Misyonumuz</a>
+                <a href="kvkk.html">KVKK Metni</a>
+            </div>
+
+        </div>
+
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const card = document.getElementById('interactiveCard');
+        if (card && window.innerWidth > 768) {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+
+                const rotateX = (-y / rect.height) * 6;
+                const rotateY = (x / rect.width) * 6;
+
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            });
+        }
+
+        // Apex26 Başvuru Formu - Formspree + 30 Dakika Bekleme Süresi
+        const apex26Form = document.getElementById('apex26Form');
+        const apex26SubmitBtn = document.getElementById('apex26SubmitBtn');
+        const apex26FormStatus = document.getElementById('apex26FormStatus');
+        const apex26CooldownNotice = document.getElementById('apex26CooldownNotice');
+
+        const APEX26_COOLDOWN_KEY = 'apex26_last_submit';
+        const APEX26_COOLDOWN_MS = 30 * 60 * 1000; // 30 dakika
+
+        function apex26GetRemainingCooldown() {
+            const lastSubmit = localStorage.getItem(APEX26_COOLDOWN_KEY);
+            if (!lastSubmit) return 0;
+            const elapsed = Date.now() - parseInt(lastSubmit, 10);
+            const remaining = APEX26_COOLDOWN_MS - elapsed;
+            return remaining > 0 ? remaining : 0;
+        }
+
+        function apex26FormatRemaining(ms) {
+            const totalSeconds = Math.ceil(ms / 1000);
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return minutes + ' dk ' + (seconds < 10 ? '0' : '') + seconds + ' sn';
+        }
+
+        let apex26CooldownInterval = null;
+
+        function apex26UpdateCooldownUI() {
+            const remaining = apex26GetRemainingCooldown();
+
+            if (remaining > 0) {
+                apex26SubmitBtn.disabled = true;
+                apex26CooldownNotice.style.display = 'block';
+                apex26CooldownNotice.className = 'form-status';
+                apex26CooldownNotice.textContent = 'Tekrar başvurabilmek için kalan süre: ' + apex26FormatRemaining(remaining);
+
+                if (!apex26CooldownInterval) {
+                    apex26CooldownInterval = setInterval(apex26UpdateCooldownUI, 1000);
+                }
+            } else {
+                apex26SubmitBtn.disabled = false;
+                apex26CooldownNotice.style.display = 'none';
+                apex26CooldownNotice.textContent = '';
+
+                if (apex26CooldownInterval) {
+                    clearInterval(apex26CooldownInterval);
+                    apex26CooldownInterval = null;
+                }
+            }
+        }
+
+        if (apex26Form) {
+            // Sayfa yüklendiğinde daha önce bekleme süresi başlatılmışsa göster
+            apex26UpdateCooldownUI();
+
+            apex26Form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                if (apex26GetRemainingCooldown() > 0) {
+                    apex26UpdateCooldownUI();
+                    return;
+                }
+
+                apex26SubmitBtn.disabled = true;
+                apex26SubmitBtn.textContent = 'Gönderiliyor...';
+                apex26FormStatus.textContent = '';
+                apex26FormStatus.className = 'form-status';
+
+                const formData = new FormData(apex26Form);
+
+                fetch(apex26Form.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(function(response) {
+                    if (response.ok) {
+                        apex26FormStatus.textContent = 'Başvurunuz başarıyla gönderildi!';
+                        apex26FormStatus.classList.add('success');
+                        apex26Form.reset();
+
+                        localStorage.setItem(APEX26_COOLDOWN_KEY, Date.now().toString());
+                        apex26SubmitBtn.textContent = 'Başvur';
+                        apex26UpdateCooldownUI();
+                    } else {
+                        return response.json().then(function(data) {
+                            throw new Error((data && data.error) || 'Gönderim başarısız');
+                        });
+                    }
+                })
+                .catch(function(error) {
+                    apex26FormStatus.textContent = 'Bir hata oluştu, lütfen tekrar deneyin.';
+                    apex26FormStatus.classList.add('error');
+                    apex26SubmitBtn.disabled = false;
+                    apex26SubmitBtn.textContent = 'Başvur';
+                    console.error('Formspree Hatası:', error);
+                });
+            });
+        }
+    });
+</script>
+</body>
+</html>

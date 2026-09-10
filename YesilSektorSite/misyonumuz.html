@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="minilogo.png">
+    <title>Misyonumuz</title>
+    <!-- Modern Premium Font Deneyimi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-accent: #00e676;
+            --primary-glow: rgba(0, 230, 118, 0.25);
+            --bg-dark: #0a0c0e;
+            --card-bg: rgba(18, 22, 25, 0.65);
+            --border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        body.misyonumuz {
+            font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: #e0e6ed;
+            margin: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Arka Plan Parlamaları */
+        body.misyonumuz::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: 20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.12) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        body.misyonumuz::after {
+            content: '';
+            position: fixed;
+            bottom: -10%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 120, 212, 0.08) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+            100% { transform: scale(1.2) translate(-30px, 30px); opacity: 1; }
+        }
+
+        /* MİSYON ÖZEL ŞEFFAF KUTU TASARIMI */
+        .misyon-main {
+            margin-top: 101px;
+            padding: 80px 0;
+            display: flex;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .misyon-container {
+            max-width: 900px;
+            width: 90%;
+            margin: 0 auto;
+            margin-top: -40px;
+            color: #ffffff;
+            line-height: 1.8;
+            
+            /* Ultra Premium Glassmorphism */
+            background: var(--card-bg);
+            padding: 60px;
+            border-radius: 28px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            transform-style: preserve-3d;
+        }
+
+        .misyon-container h1 {
+            font-size: 48px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 35px;
+            color: #ffffff;
+            letter-spacing: -1px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .misyon-container h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-accent), transparent);
+            margin: 15px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .misyon-container h2 {
+            margin-top: 45px;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-accent);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .misyon-container h2::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--primary-accent);
+        }
+
+        .misyon-container p {
+            font-size: 17px;
+            color: #b0bec5;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        /* Scroll Anında Animasyon İçin Sınıflar */
+        .reveal-item {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-item.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SENİN FOOTER KODLARIN */
+        .footer {
+            margin-top: auto;
+        }
+
+        .footer-container {
+            margin: 0 auto; 
+            width: 90%;
+            background: #121518;
+            border-top: 1px solid var(--border-color);
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            padding: 60px;
+            color: white;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .col b {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .col a {
+            text-decoration: none;
+            color: #90a4ae;
+            font-size: 15px;
+            transition: 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            width: fit-content;
+        }
+
+        .col a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--primary-accent);
+            transition: width 0.3s ease;
+        }
+
+        .col a:hover {
+            color: #ffffff;
+        }
+
+        .col a:hover::after {
+            width: 100%;
+        }
+
+        .menu a {
+            color: #fff;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: var(--primary-accent);
+            text-shadow: 0 0 8px var(--primary-glow);
+        }
+
+        /* --- MOBİL UYUMLULUK --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+                padding: 10px;
+            }
+
+            .logo {
+                justify-self: auto;
+            }
+
+            .menu {
+                justify-self: auto;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .menu a {
+                font-size: 13px;
+                padding: 5px 8px;
+            }
+
+            .misyon-main {
+                padding: 40px 0;
+            }
+
+            .misyon-container {
+                margin-top: 40px;
+                padding: 30px 20px;
+            }
+
+            .misyon-container h1 {
+                font-size: 32px;
+            }
+
+            .misyon-container h2 {
+                font-size: 20px;
+            }
+
+            #anayazi {
+                font-size: 32px !important;
+                margin-top: 180px !important;
+                line-height: 1.2;
+            }
+
+            .aboutusbox {
+                width: 95% !important;
+                height: auto !important;
+                margin: 40px auto !important;
+                padding: 40px 15px !important;
+                border-radius: 30px !important;
+            }
+
+            .aboutusbox h1 {
+                font-size: 30px !important;
+                padding-top: 20px !important;
+            }
+
+            .aboutusbox pre {
+                font-size: 14px !important;
+                white-space: pre-wrap !important;
+                text-align: center;
+            }
+
+            .border-line { display: none; }
+
+            .parabolicaanasayfa, .apex26anasayfa {
+                width: 300px !important;
+                height: 300px !important;
+                margin: 20px auto !important;
+                position: static !important;
+            }
+
+            .footer-container {
+                padding: 40px 20px !important;
+                width: 100% !important;
+                border-radius: 30px 30px 0 0 !important;
+            }
+
+            .footer-columns {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 40px !important;
+            }
+
+            .footer-logo {
+                margin-bottom: 30px !important;
+            }
+
+            .col b {
+                font-size: 18px;
+            }
+
+            .bosluk {
+                height: 30px !important;
+            }
+        }
+    </style>
+</head>
+<body class="misyonumuz">   
+
+<header class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">
+                <img src="Yeşil Sektör Logo (1).png" alt="Logo">
+            </a>
+        </div>
+        <nav class="menu">
+            <a href="index.html" class="nav-anasayfa">Ana Sayfa</a>
+            <a href="iletisim.html" class="nav-iletisim">İletişim</a>
+            <a href="ekibimiz.html" class="nav-ekibimiz">Ekibimiz</a>
+            <a href="misyonumuz.html" class="nav-misyonumuz">Misyonumuz</a>
+            <a href="parabolica.html" class="nav-parabolica">Parabolica</a>
+            <a href="apex26.html" class="nav-apex26">Apex26</a>
+        </nav>
+    </div>
+</header>
+
+<main class="misyon-main">
+    <div class="misyon-container" id="interactiveCard">
+        <h1 class="reveal-item">Misyonumuz</h1>
+        
+        <p class="reveal-item">
+            Türkiye’de motor sporlarının geleceğine yön vermek ve bu alanın potansiyelini
+            en üst seviyeye taşımak amacıyla yola çıktık. Yeşil Sektör, motor sporlarını
+            bir kültür haline getirmek ve genç yeteneklere ilham olmak için çalışan
+            bir oluşumdur.
+        </p>
+
+        <h2 class="reveal-item">Türkiye'de Motor Sporlarının Gelişimi</h2>
+        <p class="reveal-item">
+            Genç sporcuların hayallerini gerçeğe dönüştürmeleri için gerekli desteği
+            sağlıyor, eğitim ve organizasyonlarla onların gelişimine katkıda bulunuyoruz.
+        </p>
+
+        <h2 class="reveal-item">Birlikte Daha Güçlüyüz</h2>
+        <p class="reveal-item">
+            Sporcular, markalar ve organizatörler arasında güçlü bağlar kurarak
+            sürdürülebilir bir spor ekosistemi oluşturmayı hedefliyoruz.
+        </p>
+
+        <h2 class="reveal-item">Haber ve Bilgi Merkezi</h2>
+        <p class="reveal-item">
+            Güncel haberler, analizler ve içeriklerle motor sporları tutkunlarına
+            güvenilir bir bilgi kaynağı sunuyoruz.
+        </p>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="Yeşil Sektör Logo (1).png" width="100" alt="Yeşil Sektör Logo">
+        </div>
+        
+        <div class="footer-columns">
+            <div class="col">
+                <b>Platform</b>
+                <a href="#" id="scrollTop">Ana Sayfa</a>
+                <a href="parabolica.html">Parabolica</a>
+                <a href="apex26.html">Apex26</a>
+            </div>
+
+            <div class="col">
+                <b>Sosyal Medya</b>
+                <a target="_blank" href="https://www.instagram.com/yesil_sektor/">Instagram</a>
+                <a target="_blank" href="https://www.linkedin.com/company/ye%C5%9Fil-sekt%C3%B6r/">LinkedIn</a>
+            </div>
+
+            <div class="col">
+                <b>Kurumsal</b>
+                <a href="iletisim.html">İletişim</a>
+                <a href="ekibimiz.html">Ekibimiz</a>
+                <a href="misyonumuz.html">Misyonumuz</a>
+                <a href="kvkk.html">KVKK Metni</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+<!-- İnteraktif Özellikler İçin Script -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. Scroll Görünürlük Animasyonu (Intersection Observer)
+        const revealItems = document.querySelectorAll('.reveal-item');
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('active');
+                    }, index * 100);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        revealItems.forEach(item => observer.observe(item));
+
+        // 2. Hafif 3D Kart Tilt Efekti (Masaüstü için)
+        const card = document.getElementById('interactiveCard');
+        if (window.innerWidth > 768) {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                
+                const rotateX = (-y / rect.height) * 6; 
+                const rotateY = (x / rect.width) * 6;
+
+                card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+            });
+        }
+    });
+</script>
+</body>
+</html>

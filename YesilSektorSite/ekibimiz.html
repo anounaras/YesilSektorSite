@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="minilogo.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Ekibimiz</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-accent: #00e676;
+            --primary-glow: rgba(0, 230, 118, 0.25);
+            --bg-dark: #0a0c0e;
+            --card-bg: rgba(18, 22, 25, 0.65);
+            --border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Plus Jakarta Sans', Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: #e0e6ed;
+            overflow-x: hidden;
+            position: relative;
+            padding-top: 100px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%;
+            left: 20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.12) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -10%;
+            right: 10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 120, 212, 0.08) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1) translate(0, 0); opacity: 0.8; }
+            100% { transform: scale(1.2) translate(-30px, 30px); opacity: 1; }
+        }
+
+        /* ============ NAVBAR (index.html ile birebir aynı) ============ */
+        .navbar {
+            width: 100%;
+            padding: 20px 0;
+            background: #1b1b1b;
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .nav-container {
+            width: 85%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        .logo {
+            justify-self: center;
+        }
+
+        .logo img {
+            width: 80px;
+            height: auto;
+        }
+
+        .menu {
+            justify-self: end;
+            display: flex;
+            gap: 40px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: var(--primary-accent);
+            left: 0;
+            bottom: -6px;
+            transition: 0.3s ease;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu a:hover {
+            color: var(--primary-accent);
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--primary-accent);
+            width: 0%;
+            z-index: 9999;
+        }
+        /* ============ NAVBAR SONU ============ */
+
+        .team-section h1 {
+            padding-top: 60px;
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        .team-section h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-accent), transparent);
+            margin: 18px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .team-section > p {
+            padding: 35px 20px 10px 20px;
+            text-align: center;
+            max-width: 850px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #b0bec5;
+            font-weight: 400;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            padding: 50px 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            padding: 60px 40px 70px 40px;
+            width: 380px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        .card-socials {
+            position: absolute;
+            bottom: 18px;
+            right: 20px;
+            display: flex;
+            gap: 12px;
+            z-index: 2;
+        }
+
+        .card-socials a {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-color);
+            transition: 0.3s ease;
+        }
+
+        .card-socials a:hover {
+            background: var(--primary-accent);
+            box-shadow: 0 0 15px var(--primary-glow);
+            transform: translateY(-3px);
+        }
+
+        .card-socials svg {
+            width: 18px;
+            height: 18px;
+            fill: #e0e6ed;
+            transition: 0.3s ease;
+        }
+
+        .card-socials a:hover svg {
+            fill: #0a0c0e;
+        }
+
+        .card h2 {
+            font-size: 1.6rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: var(--primary-accent) !important;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding-top: 5px !important;
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .footer {
+            margin-top: auto;
+        }
+
+        .footer-container {
+            margin: 0 auto;
+            width: 90%;
+            background: #121518;
+            border-top: 1px solid var(--border-color);
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            padding: 60px;
+            color: white;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .col b {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .col a {
+            text-decoration: none;
+            color: #90a4ae;
+            font-size: 15px;
+            transition: 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            width: fit-content;
+        }
+
+        .col a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background-color: var(--primary-accent);
+            transition: width 0.3s ease;
+        }
+
+        .col a:hover {
+            color: #ffffff;
+        }
+
+        .col a:hover::after {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 140px;
+            }
+
+            .nav-container {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+                padding: 10px;
+            }
+
+            .logo {
+                justify-self: auto;
+            }
+
+            .menu {
+                justify-self: auto;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .menu a {
+                font-size: 13px;
+                padding: 5px 8px;
+            }
+
+            .team-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 350px;
+                padding: 40px 20px;
+                transform: none !important;
+            }
+
+            .footer-container {
+                padding: 40px 20px !important;
+                width: 100% !important;
+                border-radius: 30px 30px 0 0 !important;
+            }
+
+            .footer-columns {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 40px !important;
+            }
+        }
+    </style>
+</head>
+<body class="ekibimiz">
+
+    <header class="navbar">
+        <div class="nav-container">
+
+            <div class="logo">
+                <a href="index.html">
+                <img width="100px" src="Yeşil Sektör Logo (1).png" alt="Logo">
+                </a>
+            </div>
+
+            <nav class="menu">
+                <a href="index.html" class="nav-anasayfa">Ana Sayfa</a>
+                <a href="iletisim.html" class="nav-iletisim">İletişim</a>
+                <a href="ekibimiz.html" class="nav-ekibimiz">Ekibimiz</a>
+                <a href="misyonumuz.html" class="nav-misyonumuz">Misyonumuz</a>
+                <a href="parabolica.html" class="nav-parabolica">Parabolica</a>
+                <a href="apex26.html" class="nav-apex26">Apex26</a>
+            </nav>
+
+        </div>
+    </header>
+
+    <div class="team-section">
+        <h1>Tutku, Hız ve Ekip Ruhu</h1>
+        <p>
+            Yeşil Sektör, motor sporlarını Türkiye'de geliştirmek, gençlere destek olmak ve motor sporlarıyla ilgilenen herkesi bir araya getirmek amacıyla kurulmuştur. Ekibimiz, sosyal medya içeriklerinden etkinlik organizasyonlarına, simracing projelerinden sponsorluk iş birliklerine kadar geniş bir alanda çalışmaktadır.<br><br>
+            Birlikte, Türkiye'de motor sporlarını daha ileriye taşımak için çalışıyoruz!
+        </p>
+        
+        <div class="cards-container">
+            <div class="card">
+                <h2>Mir Bedirhan Fidan</h2>
+                <p>Kurucu</p>
+                <div class="card-socials">
+                    <a href="https://www.instagram.com/mirbedirhanfidan/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm5.75-3.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/></svg></a>
+                    <a href="https://www.linkedin.com/in/bedirhan-fidan-a372602a0/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8.5 8h3.84v2.18h.05c.53-1 1.83-2.18 3.77-2.18 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.17V24h-4V8z"/></svg></a>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Aras Mandıra</h2>
+                <p>It Yöneticisi</p>
+                <div class="card-socials">
+                    <a href="https://www.instagram.com/aras_mnd/" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm5.75-3.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/></svg></a>
+                    <a href="https://www.linkedin.com/in/aras-mandira-6aa873324/" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8.5 8h3.84v2.18h.05c.53-1 1.83-2.18 3.77-2.18 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.17V24h-4V8z"/></svg></a>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Yusuf İlhan</h2>
+                <p>Finans Yöneticisi</p>
+                <div class="card-socials">
+                    <a href="#" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm5.75-3.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/></svg></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8.5 8h3.84v2.18h.05c.53-1 1.83-2.18 3.77-2.18 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.17V24h-4V8z"/></svg></a>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Utku Işık</h2>
+                <p>PR Yöneticisi</p>
+                <div class="card-socials">
+                    <a href="#" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm5.75-3.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/></svg></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8.5 8h3.84v2.18h.05c.53-1 1.83-2.18 3.77-2.18 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.17V24h-4V8z"/></svg></a>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Enes Yiğit Cebeci</h2>
+                <p>Akademi Yöneticisi</p>
+                <div class="card-socials">
+                    <a href="#" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm5.75-3.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/></svg></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8.5 8h3.84v2.18h.05c.53-1 1.83-2.18 3.77-2.18 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.17V24h-4V8z"/></svg></a>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Yasin Ayaz Saraç</h2>
+                <p>İçerik Üreticisi</p>
+                <div class="card-socials">
+                    <a href="#" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm5.75-3.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/></svg></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8.5 8h3.84v2.18h.05c.53-1 1.83-2.18 3.77-2.18 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.17V24h-4V8z"/></svg></a>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Ahmet Alperen Bakırcı</h2>
+                <p>İçerik Üreticisi</p>
+                <div class="card-socials">
+                    <a href="#" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm5.75-3.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/></svg></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8.5 8h3.84v2.18h.05c.53-1 1.83-2.18 3.77-2.18 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.17V24h-4V8z"/></svg></a>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Gökalp Yüksel</h2>
+                <p>Tasarımcı</p>
+                <div class="card-socials">
+                    <a href="#" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm5.75-3.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/></svg></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8.5 8h3.84v2.18h.05c.53-1 1.83-2.18 3.77-2.18 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.17V24h-4V8z"/></svg></a>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Mete Demirel</h2>
+                <p>İçerik Üreticisi</p>
+                <div class="card-socials">
+                    <a href="#" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2C4.24 2 2 4.24 2 7v10c0 2.76 2.24 5 5 5h10c2.76 0 5-2.24 5-5V7c0-2.76-2.24-5-5-5H7zm10 2c1.66 0 3 1.34 3 3v10c0 1.66-1.34 3-3 3H7c-1.66 0-3-1.34-3-3V7c0-1.66 1.34-3 3-3h10zm-5 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zm0 2a3.5 3.5 0 110 7 3.5 3.5 0 010-7zm5.75-3.25a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z"/></svg></a>
+                    <a href="#" target="_blank" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V24h-4V8zM8.5 8h3.84v2.18h.05c.53-1 1.83-2.18 3.77-2.18 4.03 0 4.78 2.65 4.78 6.1V24h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.17V24h-4V8z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="Yeşil Sektör Logo (1).png" width="100" alt="Logo">
+            </div>
+            
+            <div class="footer-columns">
+                <div class="col">
+                    <b>Platform</b>
+                    <a href="#" id="scrollTop">Ana Sayfa</a>
+                    <a href="parabolica.html">Parabolica</a>
+                    <a href="apex26.html">Apex26</a>
+                </div>
+
+                <div class="col">
+                    <b>Sosyal Medya</b>
+                    <a target="_blank" href="https://www.instagram.com/yesil_sektor/">Instagram</a>
+                    <a target="_blank" href="https://www.linkedin.com/company/ye%C5%9Fil-sekt%C3%B6r/">LinkedIn</a>
+                </div>
+
+                <div class="col">
+                    <b>Kurumsal</b>
+                    <a href="iletisim.html">İletişim</a>
+                    <a href="ekibimiz.html">Ekibimiz</a>
+                    <a href="misyonumuz.html">Misyonumuz</a>
+                    <a href="kvkk.html">KVKK Metni</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (centerY - y) / 20;
+                const rotateY = (x - centerX) / 20;
+
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+    </script>
+</body>
+</html>

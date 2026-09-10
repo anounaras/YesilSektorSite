@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="minilogo.png">
+    <link rel="stylesheet" href="style.css">
+    <title>İletişim | Yeşil Sektör</title>
+
+    <!-- Modern Premium Font Deneyimi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-green: #76ff03; /* Parlak yeşil vurgu */
+            --primary-glow: rgba(118, 255, 3, 0.3);
+            --bg-dark: #0a0c0e;
+            --card-bg: rgba(18, 22, 25, 0.65);
+            --border-color: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: "Plus Jakarta Sans", "Raleway", sans-serif;
+            background-color: var(--bg-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body.iletisim {
+            padding-top: 100px;
+        }
+
+        /* Ambient Arka Plan Parlamaları */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 230, 118, 0.12) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+            animation: pulseGlow 8s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.5; transform: translateX(-50%) scale(0.9); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+        }
+
+        /* ============ NAVBAR (index.html yapısı) ============ */
+        .navbar {
+            width: 100%;
+            padding: 20px 0;
+            background: #1b1b1b;
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .nav-container {
+            width: 85%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+        }
+
+        .logo {
+            justify-self: center;
+        }
+
+        .logo img {
+            width: 80px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .menu {
+            justify-self: end;
+            display: flex;
+            gap: 40px;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background: var(--primary-green);
+            left: 0;
+            bottom: -6px;
+            transition: 0.3s ease;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu a:hover {
+            color: var(--primary-green);
+        }
+
+        /* Aktif olan İletişim sekmesi yeşil yanar */
+        .menu a.active {
+            color: var(--primary-green) !important;
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .menu a.active::after {
+            width: 100%;
+        }
+        /* ============ NAVBAR SONU ============ */
+
+        /* --- İLETİŞİM FORMU (PREMIUM GLASS) --- */
+        .form-container {
+            max-width: 850px;
+            width: 90%;
+            margin: 60px auto 140px auto; 
+            padding: 55px 60px;
+            border-radius: 28px;
+            background: var(--card-bg); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(118, 255, 3, 0.15);
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #ffffff;
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 35px;
+            letter-spacing: -1px;
+            position: relative;
+        }
+
+        .form-container h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-green), transparent);
+            margin: 12px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .form-container label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 13px;
+            color: var(--primary-green);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 16px 20px;
+            margin-bottom: 25px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            background: rgba(10, 12, 14, 0.6);
+            color: #ffffff;
+            font-size: 16px;
+            font-family: inherit;
+            backdrop-filter: blur(6px);
+            transition: all 0.3s ease;
+        }
+
+        .form-container input:focus,
+        .form-container textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            background: rgba(10, 12, 14, 0.85);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 18px;
+            font-size: 18px;
+            font-weight: 800;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary-green), #00e676);
+            color: #0a0c0e;
+            cursor: pointer;
+            box-shadow: 0 10px 25px var(--primary-glow);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-container button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(118, 255, 3, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            margin-top: auto;
+        }
+
+        .footer-container {
+            margin: 0 auto; 
+            width: 90%;
+            background: #1b1b1b;
+            border-top: 1px solid var(--border-color);
+            border-top-left-radius: 40px;
+            border-top-right-radius: 40px;
+            padding: 60px;
+            color: white;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .footer-logo {
+            text-align: center;
+            margin-bottom: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: center;
+            gap: 120px;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .col b {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .col a {
+            text-decoration: none;
+            color: #ccc;
+            font-size: 15px;
+            transition: 0.3s ease;
+            font-weight: 600;
+        }
+
+        .col a:hover {
+            color: var(--primary-green);
+        }
+
+        /* --- MOBİL UYUMLULUK --- */
+        @media (max-width: 768px) {
+            .nav-container {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+                padding: 10px;
+            }
+
+            .logo {
+                justify-self: auto;
+            }
+
+            .menu {
+                justify-self: auto;
+                gap: 10px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .menu a {
+                font-size: 13px;
+                padding: 5px 8px;
+            }
+
+            .form-container {
+                margin: 40px 15px 80px 15px; 
+                padding: 35px 20px;
+                width: auto;
+            }
+
+            .form-container h2 {
+                font-size: 30px;
+            }
+
+            .footer-container {
+                padding: 40px 20px !important;
+                width: 100% !important;
+                border-radius: 30px 30px 0 0 !important;
+            }
+
+            .footer-columns {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 35px !important;
+            }
+        }
+    </style>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init({
+                publicKey: "T_PjDMSAcNp7KuNV5",
+            });
+        })();
+    </script>
+</head>
+
+<body class="iletisim">
+
+<header class="navbar">
+    <div class="nav-container">
+
+        <div class="logo">
+            <a href="index.html">
+            <img width="100px" src="Yeşil Sektör Logo (1).png" alt="Logo">
+            </a>
+        </div>
+
+        <nav class="menu">
+            <a href="index.html" class="nav-anasayfa">Ana Sayfa</a>
+            <a href="iletisim.html" class="nav-iletisim active">İletişim</a>
+            <a href="ekibimiz.html" class="nav-ekibimiz">Ekibimiz</a>
+            <a href="misyonumuz.html" class="nav-misyonumuz">Misyonumuz</a>
+            <a href="parabolica.html" class="nav-parabolica">Parabolica</a>
+            <a href="apex26.html" class="nav-apex26">Apex26</a>
+        </nav>
+
+    </div>
+</header>
+
+<div class="form-container">
+    <h2>İletişim Formu</h2>
+    <form action="https://formspree.io/f/xzdajqgv" method="POST">
+        
+        <label for="name">Adınız:</label>
+        <input type="text" id="name" name="name" placeholder="Adınızı girin" required>
+
+        <label for="email">E-posta:</label>
+        <input type="email" id="email" name="email" placeholder="E-posta adresinizi girin" required>
+
+        <label for="subject">Konu:</label>
+        <input type="text" id="subject" name="subject" placeholder="Konu başlığı" required>
+
+        <label for="message">Mesajınız:</label>
+        <textarea id="message" name="message" rows="5" placeholder="Mesajınızı yazın" required></textarea>
+        
+        <button type="submit" onclick="sendEmail()">Gönder</button>
+    </form>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-logo">
+            <img src="Yeşil Sektör Logo (1).png" width="100" alt="Logo">
+        </div>
+        
+        <div class="footer-columns">
+            <div class="col">
+                <b>Platform</b>
+                <a href="#" id="scrollTop">Ana Sayfa</a>
+                <a href="parabolica.html">Parabolica</a>
+                <a href="apex26.html">Apex26</a>
+            </div>
+
+            <div class="col">
+                <b>Sosyal Medya</b>
+                <a target="_blank" href="https://www.instagram.com/yesil_sektor/">Instagram</a>
+                <a target="_blank" href="https://www.linkedin.com/company/ye%C5%9Fil-sekt%C3%B6r/">LinkedIn</a>
+            </div>
+
+            <div class="col">
+                <b>Kurumsal</b>
+                <a href="iletisim.html">İletişim</a>
+                <a href="ekibimiz.html">Ekibimiz</a>
+                <a href="misyonumuz.html">Misyonumuz</a>
+                <a href="kvkk.html">KVKK Metni</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="contactus.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
